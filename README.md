@@ -8,6 +8,7 @@ This module is capable of creating multiple EVS volumes using parameters for the
 ```hcl
 module "elasticsearch_volumes" {
   source      = "iits-consulting/evs/opentelekomcloud"
+
   volume_names       = ["elasticsearch-${var.stage}-0","elasticsearch-${var.stage}-1"]
   availability_zones = ["eu-de-02", "eu-de-03"]
   kms_key_prefix     = "elasticsearch-${var.stage}"
@@ -50,17 +51,20 @@ module "elasticsearch_volumes" {
 | volumes | A map of created volumes where keys are volume names |
 
 <!-- BEGIN_TF_DOCS -->
-
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.7 |
+| <a name="requirement_opentelekomcloud"></a> [opentelekomcloud](#requirement\_opentelekomcloud) | ~> 1.35 |
+| <a name="requirement_random"></a> [random](#requirement\_random) | ~> 3.0 |
 
 ## Providers
 
-| Name                                                                                    | Version |
-| --------------------------------------------------------------------------------------- | ------- |
-| <a name="provider_opentelekomcloud"></a> [opentelekomcloud](#provider_opentelekomcloud) | n/a     |
-| <a name="provider_random"></a> [random](#provider_random)                               | n/a     |
+| Name | Version |
+|------|---------|
+| <a name="provider_opentelekomcloud"></a> [opentelekomcloud](#provider\_opentelekomcloud) | ~> 1.35 |
+| <a name="provider_random"></a> [random](#provider\_random) | ~> 3.0 |
 
 ## Modules
 
@@ -68,27 +72,25 @@ No modules.
 
 ## Resources
 
-| Name                                                                                                                                                        | Type     |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| Name | Type |
+|------|------|
 | [opentelekomcloud_evs_volume_v3.evs_volumes](https://registry.terraform.io/providers/opentelekomcloud/opentelekomcloud/latest/docs/resources/evs_volume_v3) | resource |
-| [opentelekomcloud_kms_key_v1.volume_kms_key](https://registry.terraform.io/providers/opentelekomcloud/opentelekomcloud/latest/docs/resources/kms_key_v1)    | resource |
-| [random_id.volume_kms_id](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/id)                                                | resource |
+| [opentelekomcloud_kms_key_v1.volume_kms_key](https://registry.terraform.io/providers/opentelekomcloud/opentelekomcloud/latest/docs/resources/kms_key_v1) | resource |
+| [random_id.volume_kms_id](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/id) | resource |
 
 ## Inputs
 
-| Name                                                                                    | Description                          | Type           | Default                                                                                   | Required |
-| --------------------------------------------------------------------------------------- | ------------------------------------ | -------------- | ----------------------------------------------------------------------------------------- | :------: |
-| <a name="input_kms_key_prefix"></a> [kms_key_prefix](#input_kms_key_prefix)             | n/a                                  | `string`       | n/a                                                                                       |   yes    |
-| <a name="input_volume_names"></a> [volume_names](#input_volume_names)                   | n/a                                  | `list(string)` | n/a                                                                                       |   yes    |
-| <a name="input_availability_zones"></a> [availability_zones](#input_availability_zones) | n/a                                  | `list`         | <pre>[<br/> "eu-de-01"<br/>]</pre>                                                        |    no    |
-| <a name="input_spec"></a> [spec](#input_spec)                                           | n/a                                  | `map`          | <pre>{<br/> "device_type": "SCSI",<br/> "size": 20,<br/> "volume_type": "SSD"<br/>}</pre> |    no    |
-| <a name="input_tags"></a> [tags](#input_tags)                                           | Common tag set for project resources | `map(string)`  | `{}`                                                                                      |    no    |
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_kms_key_prefix"></a> [kms\_key\_prefix](#input\_kms\_key\_prefix) | n/a | `string` | n/a | yes |
+| <a name="input_volume_names"></a> [volume\_names](#input\_volume\_names) | n/a | `list(string)` | n/a | yes |
+| <a name="input_availability_zones"></a> [availability\_zones](#input\_availability\_zones) | n/a | `list(string)` | <pre>[<br/>  "eu-de-01"<br/>]</pre> | no |
+| <a name="input_spec"></a> [spec](#input\_spec) | n/a | <pre>object({<br/>    size        = number<br/>    volume_type = string<br/>    device_type = string<br/>  })</pre> | <pre>{<br/>  "device_type": "SCSI",<br/>  "size": 20,<br/>  "volume_type": "SSD"<br/>}</pre> | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Common tag set for project resources | `map(string)` | `{}` | no |
 
 ## Outputs
 
-| Name                                                     | Description |
-| -------------------------------------------------------- | ----------- |
-| <a name="output_volumes"></a> [volumes](#output_volumes) | n/a         |
-
+| Name | Description |
+|------|-------------|
+| <a name="output_volumes"></a> [volumes](#output\_volumes) | n/a |
 <!-- END_TF_DOCS -->
-
