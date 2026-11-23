@@ -86,6 +86,7 @@ No modules.
 | <a name="input_kms_key_prefix"></a> [kms\_key\_prefix](#input\_kms\_key\_prefix) | n/a | `string` | n/a | yes |
 | <a name="input_volume_names"></a> [volume\_names](#input\_volume\_names) | n/a | `list(string)` | n/a | yes |
 | <a name="input_availability_zones"></a> [availability\_zones](#input\_availability\_zones) | n/a | `list(string)` | <pre>[<br/>  "eu-de-01"<br/>]</pre> | no |
+| <a name="input_kms_key_rotation_interval"></a> [kms\_key\_rotation\_interval](#input\_kms\_key\_rotation\_interval) | Rotation interval in days (30-365) for the KMS key created by this module. Setting a value enables automatic key rotation. null turns rotation off, also on a key where it was enabled outside of Terraform. (default: null) | `number` | `null` | no |
 | <a name="input_spec"></a> [spec](#input\_spec) | n/a | <pre>object({<br/>    size        = number<br/>    volume_type = string<br/>    device_type = string<br/>  })</pre> | <pre>{<br/>  "device_type": "SCSI",<br/>  "size": 20,<br/>  "volume_type": "SSD"<br/>}</pre> | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Common tag set for project resources | `map(string)` | `{}` | no |
 
