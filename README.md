@@ -43,6 +43,7 @@ module "elasticsearch_volumes" {
 | spec               | Volume specifications like size, volume type and device type |    object    | { size=20, volume_type="SSD", device_type="SCSI" } |    no    |
 | availability_zones | List of availability zones for the volumes                   | list(string) |                    ["eu-de-01"]                    |    no    |
 | kms_key_prefix     | Prefix to be used for creating the kms key                   |    string    |                        n/a                         |   yes    |
+| kms_key_rotation_interval | Rotation interval in days (30-365) for the kms key, null disables rotation |    number    |                        null                        |    no    |
 
 ## Outputs
 
