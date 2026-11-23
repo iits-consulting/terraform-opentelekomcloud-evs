@@ -3,10 +3,10 @@ resource "random_id" "volume_kms_id" {
 }
 
 resource "opentelekomcloud_kms_key_v1" "volume_kms_key" {
-  key_alias       = "${var.kms_key_prefix}-evs-key-${random_id.volume_kms_id.hex}"
-  key_description = "Persistent volume encryption key for ${var.kms_key_prefix}"
-  pending_days    = 7
-  is_enabled      = "true"
+  key_alias         = "${var.kms_key_prefix}-evs-key-${random_id.volume_kms_id.hex}"
+  key_description   = "Persistent volume encryption key for ${var.kms_key_prefix}"
+  pending_days      = 7
+  is_enabled        = "true"
   rotation_enabled  = var.kms_key_rotation_interval != null
   rotation_interval = var.kms_key_rotation_interval
 }
